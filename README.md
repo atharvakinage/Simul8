@@ -3,9 +3,9 @@ Fun simulations in raylib using C++
 
 This repo contains two exciting simulations:  
 1. Solar System: A dynamic solar system with planets and moons that orbit.
-   - solarsystem.cpp
+   - `solarsystem.cpp`
 2. Random Walker: A simple, fun simulation where a pixel takes random steps across the screen.
-   - random_walker.cpp
+   - `random_walker.cpp`
 
 ## Prerequisites      
 - C++ compiler: To compile and run the code
