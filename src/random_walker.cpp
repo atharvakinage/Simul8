@@ -32,6 +32,11 @@ public:
                 y--;
             }
         }
+
+         void reset(int width, int height) {
+        x = width / 2;
+        y = height / 2;
+    }
         
 
         
@@ -49,6 +54,9 @@ int main(void){
     int i = 1;
     while(!WindowShouldClose()){
         w.step();
+        if (IsKeyPressed(KEY_R)) {
+            w.reset(width, height);
+        }
         BeginDrawing();
         w.render();
         EndDrawing();
