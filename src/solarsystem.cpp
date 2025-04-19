@@ -23,10 +23,10 @@ public:
         angle = GetRandomValue(0,2*PI);
     }
         
-    void orbit() {
-        angle += orbitSpeed; 
+    void orbit(float speedFactor) {
+        angle += orbitSpeed * speedFactor; 
         for (auto& moon : moons) {
-            moon.orbit();
+            moon.orbit(speedFactor);
         }
     }
 
@@ -64,15 +64,28 @@ int main(void) {
     Planet sun(50, 0, 0); 
     sun.spawnMoons(4, 1);
 
+    float speedFactor = 1.0f;
+
     SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
-        sun.orbit(); 
+        if (IsKeyDown(KEY_UP)) {
+            speedFactor += 0.01f;
+        }
+        if (IsKeyDown(KEY_DOWN)) {
+            speedFactor -= 0.01f;
+        }
+
+        if (speedFactor < 0.1f) speedFactor = 0.1f;
+        if (speedFactor > 5.0f) speedFactor = 5.0f;
+
+        sun.orbit(speedFactor);   
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
         sun.show({width/2, height/2});
+        DrawText(TextFormat("Speed: %.2fx", speedFactor), 10, 10, 20, BLACK);
 
         EndDrawing();
     }
